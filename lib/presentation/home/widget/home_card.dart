@@ -2,7 +2,16 @@ import 'package:edstem_machinetest/core/theme/styles/app_typography.dart';
 import 'package:flutter/material.dart';
 
 class HomeCard extends StatelessWidget {
-  const HomeCard({super.key});
+  const HomeCard(
+      {super.key,
+      required this.title,
+      required this.imageUrl,
+      required this.runtime,
+      required this.productionHouse});
+  final String title;
+  final String imageUrl;
+  final String runtime;
+  final String productionHouse;
 
   @override
   Widget build(BuildContext context) {
@@ -11,27 +20,35 @@ class HomeCard extends StatelessWidget {
       height: 120,
       child: Row(
         children: [
-          Container(
+          SizedBox(
             width: 85,
             height: 120,
-            decoration: BoxDecoration(
-              color: Colors.grey,
-              borderRadius: BorderRadius.circular(10),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(8),
+              child: Image.network(
+                imageUrl,
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(
             width: 16,
           ),
-          Column(children: [
+          Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
             Text(
-              'test title',
+              title,
               style: AppTypography.bodysmallBold,
+              overflow: TextOverflow.ellipsis,
+            ),
+            Text(
+              productionHouse,
+              style: AppTypography.bodysmall,
             ),
             SizedBox(
               height: 50,
             ),
             Text(
-              'runtime',
+              '$runtime mins',
               style: AppTypography.bodysmall,
             )
           ])
