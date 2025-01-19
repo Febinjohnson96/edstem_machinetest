@@ -20,4 +20,13 @@ final class HomeLoaded extends HomeState {
   List<Object> get props => [movieList];
 }
 
+class HomeSearchResult extends HomeState {
+  final List<MovieModel> searchResults;
+
+  const HomeSearchResult({required this.searchResults});
+
+  @override
+  List<Object> get props => [searchResults];
+}
+
 final class HomeError extends HomeState {}
