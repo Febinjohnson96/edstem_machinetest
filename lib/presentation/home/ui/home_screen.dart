@@ -1,9 +1,11 @@
+import 'package:edstem_machinetest/core/routes/route_name.dart';
 import 'package:edstem_machinetest/core/theme/styles/app_typography.dart';
 import 'package:edstem_machinetest/presentation/home/bloc/home_bloc.dart';
 import 'package:edstem_machinetest/presentation/home/widget/home_card.dart';
 import 'package:edstem_machinetest/presentation/widgets/app_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -35,6 +37,8 @@ class HomeScreen extends StatelessWidget {
                   ),
                   itemCount: state.movieList.length,
                   itemBuilder: (context, index) => HomeCard(
+                    callback: () => context.push(RouteName.movieDetail,
+                        extra: state.movieList[index]),
                     productionHouse: state.movieList[index].production,
                     title: state.movieList[index].title,
                     imageUrl: state.movieList[index].poster,
